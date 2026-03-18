@@ -7,33 +7,9 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
-    <div class="app-shell">
-      <aside class="overview-panel">
-        <div>
-          <p class="eyebrow">Site Map Structure</p>
-          <h1>Great Orme Touch Screen</h1>
-          <p class="panel-copy">
-            Basic 1920 x 1080 screen structure based on the sitemap flow, supplied visuals, and final approved English copy.
-          </p>
-        </div>
-
-        <nav class="screen-nav" aria-label="Screen navigation">
-          <button class="screen-tab is-active" data-target="attractor">Attractor</button>
-          <button class="screen-tab" data-target="language">Language</button>
-          <button class="screen-tab" data-target="home">Home</button>
-          <button class="screen-tab" data-target="explore-map">Explore / Map</button>
-          <button class="screen-tab" data-target="discover">Discover</button>
-          <button class="screen-tab" data-target="info">Info Page</button>
-        </nav>
-
-        <div class="flow-card">
-          <p class="flow-title">Flow</p>
-          <p>Attractor -> Language -> Home -> Explore or Discover -> Info Page</p>
-        </div>
-      </aside>
-
+    <div class="app-shell app-shell--presentation">
       <main class="stage-area">
-        <section class="screen is-visible" id="attractor">
+        <section class="screen" id="attractor">
           <div class="stage-frame stage-frame--original stage-frame--attractor">
             <div class="stage-overlay stage-overlay--hero">
               <div class="hero-copy">
@@ -42,7 +18,7 @@
                 <p>
                   Idle screen designed to draw visitors in before they choose a language and begin the interactive journey.
                 </p>
-                <button class="cta">Tap to start</button>
+                <button class="cta" data-target-screen="language">Tap to start</button>
               </div>
               <div class="hero-pills" aria-hidden="true">
                 <span>Explore map</span>
@@ -55,10 +31,17 @@
           </div>
         </section>
 
-        <section class="screen" id="language">
-          <div class="stage-frame stage-frame--image">
-            <img src="assets/images/english-welsh.jpg" alt="Language selection visual" />
-            <div class="screen-caption">Choose language</div>
+        <section class="screen is-visible" id="language">
+          <div class="stage-frame stage-frame--image stage-frame--language-simple">
+            <img src="assets/images/english-welsh_bg.png" alt="Choose language" />
+            <div class="language-options language-options--simple">
+              <button class="language-card language-card--simple" data-target-screen="discover">
+                <img src="assets/images/english-button.png" alt="English" />
+              </button>
+              <button class="language-card language-card--simple" data-target-screen="blank">
+                <img src="assets/images/welsh-button.png" alt="Cymraeg" />
+              </button>
+            </div>
           </div>
         </section>
 
@@ -109,18 +92,30 @@
 
         <section class="screen" id="explore-map">
           <div class="stage-frame stage-frame--image">
-            <img src="assets/images/map-page.jpg" alt="Interactive map visual" />
-            <div class="annotation annotation--left">
-              <h3>Explore path</h3>
-              <p>Users can turn categories on and off, then jump into location-based stories from the map.</p>
-            </div>
-            <div class="content-card content-card--right">
-              <p class="content-card__eyebrow">Explore categories</p>
-              <p>Wildlife</p>
-              <p>Geology</p>
-              <p>History</p>
-              <p>Attractions / Things to Do</p>
-              <p>Places to Eat</p>
+            <img
+              id="mapPageImage"
+              src="assets/images/map-page.jpg"
+              alt="Interactive map visual"
+            />
+            <button
+              class="map-back-hotspot"
+              data-target-screen="discover"
+              aria-label="Back to category page"
+            ></button>
+            <button
+              class="map-home-hotspot"
+              data-target-screen="language"
+              aria-label="Back to home page"
+            ></button>
+            <div class="map-legend-hotspots" aria-label="Map category and season hotspots">
+              <button class="map-hotspot" data-image-src="assets/images/map-page_eat.png" aria-label="Places to eat"></button>
+              <button class="map-hotspot" data-image-src="assets/images/map-page_geology.png" aria-label="Geology"></button>
+              <button class="map-hotspot" data-image-src="assets/images/map-page_history.png" aria-label="History"></button>
+              <button class="map-hotspot" data-image-src="assets/images/map-page_attractions.png" aria-label="Attractions"></button>
+              <button class="map-hotspot" data-image-src="assets/images/map-page_spring.png" aria-label="Spring"></button>
+              <button class="map-hotspot" data-image-src="assets/images/map-page_summer.png" aria-label="Summer"></button>
+              <button class="map-hotspot" data-image-src="assets/images/map-page_autumn.png" aria-label="Autumn"></button>
+              <button class="map-hotspot" data-image-src="assets/images/map-page_winter.png" aria-label="Winter"></button>
             </div>
           </div>
         </section>
@@ -128,40 +123,500 @@
         <section class="screen" id="discover">
           <div class="stage-frame stage-frame--image">
             <img src="assets/images/category-screen.jpg" alt="Category selection visual" />
-            <div class="annotation annotation--right">
-              <h3>Discover path</h3>
-              <p>Category-driven entry point for Geology, History and Wildlife, with supporting attraction and food listings in the broader experience.</p>
-            </div>
-            <div class="content-card content-card--left">
-              <p class="content-card__eyebrow">Final titles</p>
-              <p>Map</p>
-              <p>Choose Language</p>
-              <p>Choose Category</p>
-              <p>Geology</p>
-              <p>History</p>
-              <p>Wildlife</p>
-              <p>Things to Do</p>
-              <p>Attractions</p>
-              <p>Places to Eat</p>
+            <div class="hotspot-grid" aria-label="Category selection hotspots">
+              <button class="hotspot-zone" data-target-screen="explore-map" aria-label="Open map page"></button>
+              <button class="hotspot-zone" data-target-screen="history-test" aria-label="Open history video page"></button>
+              <button class="hotspot-zone" data-target-screen="info" aria-label="Open geology video page"></button>
             </div>
           </div>
         </section>
 
-        <section class="screen" id="info">
-          <div class="stage-frame stage-frame--image">
-            <img src="assets/images/ranger-screen.jpg" alt="Information page visual" />
-            <div class="annotation annotation--bottom annotation--wide">
-              <h3>Discover Geology: Intro Page 1</h3>
+        <section class="screen" id="blank">
+          <div class="stage-frame stage-frame--blank"></div>
+        </section>
+
+        <section class="screen" id="history-test">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/history-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">History Page 1 of 10</div>
+            <div class="test-page-copy">
+              <h2>Discover Man's Place on the Great Orme</h2>
               <p>
-                The Great Orme is a spectacular headland 3 km long and 207 metres high, formed from rock created over 300 million years ago and shaped by the forces of nature ever since.
+                Today, the Great Orme is a Country Park, a place for recreation and relaxing. But people have lived and worked here for centuries. As you walk around, it is worth remembering the people who were here before you. So join our Country Park Warden as he reveals some of the secrets of man's impact on the peninsula...
               </p>
+              <div class="question-block">
+                <p class="question-line">
+                  Q1: The name "Great Orme" is believed to come from the Norse (Viking) word "orm" meaning
+                </p>
+                <div class="answer-options" aria-label="Question 1 answer options">
+                  <button class="answer-option" type="button" data-correct="true">
+                    <span>sea serpent</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                  <button class="answer-option" type="button">
+                    <span>dragon</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button
+              class="story-nav-hotspot story-nav-hotspot--back"
+              data-target-screen="discover"
+              aria-label="Back to category page"
+            ></button>
+            <button
+              class="story-nav-hotspot story-nav-hotspot--home"
+              data-target-screen="language"
+              aria-label="Back to home page"
+            ></button>
+            <button
+              class="story-nav-hotspot story-nav-hotspot--next"
+              data-target-screen="history-test-2"
+              aria-label="Next page"
+            ></button>
+          </div>
+        </section>
+
+        <section class="screen" id="history-test-2">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/history-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">History Page 2 of 10</div>
+            <div class="test-page-copy">
+              <h2>Discover Man's Place on the Great Orme</h2>
               <p>
-                We call the study of rocks geology, and the Great Orme has many nationally important geological features: let's take a tour through those 300 million years.
+                Viking sailors may have thought that the headland looked like the head of a great sea serpent in the mist, and are believed to have called the Orme "Horma Heva". But they were not the first people to come here...
               </p>
-              <p class="question-line">
-                Q1: Do you think that the Great Orme is the remains of an extinct volcano, or the remains of millions of tiny sea creatures?
+              <div class="question-block">
+                <p class="question-line">
+                  Q2: Can you guess when the first visitors came to the Great Orme?
+                </p>
+                <div class="answer-options" aria-label="Question 2 answer options">
+                  <button class="answer-option" type="button">
+                    <span>2,200 years ago</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                  <button class="answer-option" type="button">
+                    <span>3,500 years ago</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                  <button class="answer-option" type="button" data-correct="true">
+                    <span>15,000 years ago</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="history-test" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="history-test-3" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="history-test-3">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/history-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">History Page 3 of 10</div>
+            <div class="test-page-copy">
+              <h2>Discover Man's Place on the Great Orme</h2>
+              <p>
+                The first inhabitants of the Great Orme were Stone Age hunter-gatherer tribes who came across from Europe over 15,000 years ago when Britain was still joined to the European mainland. They sheltered in the many caves around the Orme, and remains have been found of stone axes, flint scrapers and decorated animal bones.
+              </p>
+              <div class="question-block">
+                <p class="question-line">
+                  Q3: Which metal do you think was used first to make tools and weapons?
+                </p>
+                <div class="answer-options" aria-label="Question 3 answer options">
+                  <button class="answer-option" type="button">
+                    <span>iron</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                  <button class="answer-option" type="button" data-correct="true">
+                    <span>bronze</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                  <button class="answer-option" type="button">
+                    <span>gold</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="history-test-2" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="history-test-4" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="history-test-4">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/history-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">History Page 4 of 10</div>
+            <div class="test-page-copy">
+              <h2>Discover Man's Place on the Great Orme</h2>
+              <p>
+                Bronze is a hard metal made from copper &amp; tin, and the local copper deposits allowed an important mining community to flourish here around 3,500 years ago. Bronze was so important to early mankind that this period and its peoples are called the Bronze Age.
               </p>
             </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="history-test-3" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="history-test-5" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="history-test-5">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/history-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">History Page 5 of 10</div>
+            <div class="test-page-copy">
+              <h2>Discover Man's Place on the Great Orme</h2>
+              <p>
+                Around 800 years BC, Celtic tribes from Europe brought iron-working skills and built well-defended hill-forts and elaborate burial monuments. The hill fort of Pen Dinas contains the remains of over 60 roundhouses, and there are also many important Stone Age archaeological finds here on the Great Orme.
+              </p>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="history-test-4" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="history-test-6" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="history-test-6">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/history-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">History Page 6 of 10</div>
+            <div class="test-page-copy">
+              <h2>Discover Man's Place on the Great Orme</h2>
+              <p>
+                There is no evidence that the Romans settled here, but there are medieval settlements on the Great Orme which show a well-established community. Cyngreawdr stood around St Tudno's church, which survives to the present day. You can see the remains of houses just below the summit, and clearly visible remains of the medieval "ridge and furrow" farming system.
+              </p>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="history-test-5" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="history-test-7" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="history-test-7">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/history-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">History Page 7 of 10</div>
+            <div class="test-page-copy">
+              <h2>Discover Man's Place on the Great Orme</h2>
+              <p>
+                Farming continues today at Pink Farm and Parc Farm. Much of the headland became a Country Park in 1980 and tourism is now the main activity of the Great Orme. Today, the Park attracts over 600,000 visitors a year.
+              </p>
+              <div class="question-block">
+                <p class="question-line">
+                  Q4: When do you think the trend for sight-seeing and tourism started?
+                </p>
+                <div class="answer-options" aria-label="Question 4 answer options">
+                  <button class="answer-option" type="button">
+                    <span>The 1770s</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                  <button class="answer-option" type="button" data-correct="true">
+                    <span>The 1870s</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                  <button class="answer-option" type="button">
+                    <span>The 1970s</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="history-test-6" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="history-test-8" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="history-test-8">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/history-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">History Page 8 of 10</div>
+            <div class="test-page-copy">
+              <h2>Discover Man's Place on the Great Orme</h2>
+              <p>
+                In Victorian Britain, shorter working hours and the wealth created by the Industrial Revolution created a boom in leisure activities for all classes. From 1878, the rich could tour the Marine Drive toll road in their horse drawn carriages, and in 1902, the Tramway was completed, bringing crowds to the summit area, where an old telegraph station had been rebuilt as a hotel and is now a cafe.
+              </p>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="history-test-7" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="history-test-9" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="history-test-9">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/history-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">History Page 9 of 10</div>
+            <div class="test-page-copy">
+              <h2>Discover Man's Place on the Great Orme</h2>
+              <p>
+                The Great Orme was a vital part of the war effort during the Second World War: the Royal Artillery coastal gunnery school relocated from Shoeburyness in Essex to the west shore of the Great Orme in the summer of 1940 to avoid damage from enemy bombing. The shallow seas off the headland provided the ideal place for anchoring target ships.
+              </p>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="history-test-8" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="history-test-10" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="history-test-10">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/history-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">History Page 10 of 10</div>
+            <div class="test-page-copy">
+              <h2>Discover Man's Place on the Great Orme</h2>
+              <p>
+                You can explore the map to see where all these features are, or discover many more fascinating features of the Great Orme's history by Taking a Tour.
+              </p>
+              <p>
+                The Historical Trails booklet can be bought at the visitor centre shop, and contains two circular walks from the summit of the Great Orme over a landscape rich in historical remains. Route A takes around 2 1/2 hours, Route B takes 2 hours. They can be combined into one route of 7.4 miles. The track is steep and uneven in places, and walking boots are recommended.
+              </p>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="history-test-9" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="history-test-10" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="info">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/ranger-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">Geology Page 1 of 7</div>
+            <div class="test-page-copy">
+              <h2>Discover how the Great Orme was formed</h2>
+              <p>
+                The Great Orme is a spectacular headland 3 km long and 207 metres high, formed from rock created over 300 million years ago and shaped by the forces of nature ever since. We call the study of rocks geology, and the Great Orme has many nationally important geological features: let's take a tour through those 300 million years...
+              </p>
+              <div class="question-block">
+                <p class="question-line">
+                  Q1: Do you think that the Great Orme is the remains of an extinct volcano?
+                </p>
+                <div class="answer-options" aria-label="Question 1 answer options">
+                  <button class="answer-option" type="button">
+                    <span>extinct volcano</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                  <button class="answer-option" type="button" data-correct="true">
+                    <span>millions of tiny sea creatures</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button
+              class="story-nav-hotspot story-nav-hotspot--back"
+              data-target-screen="discover"
+              aria-label="Back to category page"
+            ></button>
+            <button
+              class="story-nav-hotspot story-nav-hotspot--home"
+              data-target-screen="language"
+              aria-label="Back to home page"
+            ></button>
+            <button
+              class="story-nav-hotspot story-nav-hotspot--next"
+              data-target-screen="info-2"
+              aria-label="Next page"
+            ></button>
+          </div>
+        </section>
+
+        <section class="screen" id="info-2">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/ranger-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">Geology Page 2 of 7</div>
+            <div class="test-page-copy">
+              <h2>Discover how the Great Orme was formed</h2>
+              <p>
+                The Great Orme is made of limestone. All this area was once at the bottom of the sea, and the shells of all the sea creatures and corals were crushed together to form rock. You can see fossils of many of them in the limestone at Bishop's Quarry, but please do not try to remove them. As limestone is very hard, rock was taken from here to build a palace for the Bishop of Bangor in the 13th Century.
+              </p>
+            </div>
+            <button
+              class="story-nav-hotspot story-nav-hotspot--back"
+              data-target-screen="info"
+              aria-label="Back to previous page"
+            ></button>
+            <button
+              class="story-nav-hotspot story-nav-hotspot--home"
+              data-target-screen="language"
+              aria-label="Back to home page"
+            ></button>
+            <button
+              class="story-nav-hotspot story-nav-hotspot--next"
+              data-target-screen="info-3"
+              aria-label="Next page"
+            ></button>
+          </div>
+        </section>
+
+        <section class="screen" id="info-3">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/ranger-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">Geology Page 3 of 7</div>
+            <div class="test-page-copy">
+              <h2>Discover how the Great Orme was formed</h2>
+              <p>
+                Volcanic forces under the Earth's crust made it shift and buckle, and the once-flat layers of rock were ripped apart in different directions and left lying at various angles, as you can see on the cliffs.
+              </p>
+              <div class="question-block">
+                <p class="question-line">
+                  Q2: Molten rock and gasses were forced up through the rocks: what do you think this would do?
+                </p>
+                <div class="answer-options" aria-label="Question 2 answer options">
+                  <button class="answer-option" type="button">
+                    <span>It created all the cracks and caves</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                  <button class="answer-option" type="button" data-correct="true">
+                    <span>It deposited minerals and metals in the limestone</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="info-2" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="info-4" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="info-4">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/ranger-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">Geology Page 4 of 7</div>
+            <div class="test-page-copy">
+              <h2>Discover how the Great Orme was formed</h2>
+              <p>
+                The cracks and caves were formed by later weathering; the volcanic magma created veins of copper minerals, including striking green Malachite.
+              </p>
+              <div class="question-block">
+                <p class="question-line">
+                  Q3: Can you guess what had the biggest impact on shaping the Great Orme?
+                </p>
+                <div class="answer-options" aria-label="Question 3 answer options">
+                  <button class="answer-option" type="button" data-correct="true">
+                    <span>Ice</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                  <button class="answer-option" type="button">
+                    <span>Water</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="info-3" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="info-5" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="info-5">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/ranger-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">Geology Page 5 of 7</div>
+            <div class="test-page-copy">
+              <h2>Discover how the Great Orme was formed</h2>
+              <p>
+                During the last Ice Age, there would have been over a kilometre of ice above our heads. The pressure of the ice in the glaciers scraped across the rock, creating the rounded shape we see today.
+              </p>
+              <div class="question-block">
+                <p class="question-line">
+                  Q4: Do you think this stone was:
+                </p>
+                <div class="answer-options" aria-label="Question 4 answer options">
+                  <button class="answer-option" type="button" data-correct="true">
+                    <span>Dropped here by a glacier</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                  <button class="answer-option" type="button">
+                    <span>A man-made standing stone</span>
+                    <span class="answer-box" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="info-4" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="info-6" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="info-6">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/ranger-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">Geology Page 6 of 7</div>
+            <div class="test-page-copy">
+              <h2>Discover how the Great Orme was formed</h2>
+              <p>
+                As the glaciers moved, they ripped up large stones and dropped them again. These stones are called glacial erratics. This one is called "The Mother &amp; Daughter".
+              </p>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="info-5" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="info-7" aria-label="Next page"></button>
+          </div>
+        </section>
+
+        <section class="screen" id="info-7">
+          <div class="stage-frame stage-frame--image stage-frame--test">
+            <video class="stage-video" autoplay muted loop playsinline>
+              <source src="assets/videos/ranger-screen-1.mp4" type="video/mp4" />
+            </video>
+            <div class="story-debug-label">Geology Page 7 of 7</div>
+            <div class="test-page-copy">
+              <h2>Discover how the Great Orme was formed</h2>
+              <p>
+                You can explore the map to see where all these features are, or discover many more fascinating features of the Great Orme's geology by Taking a Tour.
+              </p>
+              <p>
+                The Summit Trails leaflet can be bought at the visitor centre shop, and contains three scenic walks with stunning views; running from the town of Llandudno to the summit of the Great Orme, or followed in reverse from the summit to Llandudno. The tracks are steep and uneven in places, and walking boots are recommended.
+              </p>
+              <p>
+                • Haulfre Gardens Trail: 1 mile. Allow about 1 hour.<br />
+                • Happy Valley Trail: 1½ miles long. Allow about 1½ hours.<br />
+                • Zig Zag Trail: 1 mile. Allow about 1½ hours.
+              </p>
+            </div>
+            <button class="story-nav-hotspot story-nav-hotspot--back" data-target-screen="info-6" aria-label="Back to previous page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--home" data-target-screen="language" aria-label="Back to home page"></button>
+            <button class="story-nav-hotspot story-nav-hotspot--next" data-target-screen="info-7" aria-label="Next page"></button>
           </div>
         </section>
       </main>
